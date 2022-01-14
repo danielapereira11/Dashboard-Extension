@@ -2,6 +2,7 @@ const bodyEl = document.querySelector("body");
 const imageAuthorEl = document.getElementById("image-author");
 const unsplashApiUrl =
   "https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature";
+const cryptoApiUrl = "https://api.coingecko.com/api/v3/coins/";
 
 fetch(unsplashApiUrl)
   .then((resp) => resp.json())
@@ -16,3 +17,9 @@ fetch(unsplashApiUrl)
     imageAuthorEl.innerText = "Author: Ishan @seefromthesky";
     console.log(err);
   });
+
+// FETCH DATA FROM COIN GECKO API - CRYPTOCURRENCY
+fetch(`${cryptoApiUrl}dogecoin`)
+  .then((resp) => resp.json())
+  .then((data) => console.log(data))
+  .catch((err) => console.log(err));
