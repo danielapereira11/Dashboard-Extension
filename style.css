@@ -10,20 +10,51 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-}
-
-#image-author-container {
-  position: fixed;
-  bottom: 0;
-  z-index: 1;
-  margin: 2rem;
-  padding: 0;
-  background-color: rgba(0, 0, 0, 0.692);
-}
-
-#image-author-container > p {
-  font-size: 0.8em;
   color: white;
+}
+
+.dashboard-container {
+  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+
+div {
+  border: 1px solid red; /* For layout purposes only - delete later */
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid black; /* For layout purposes only - delete later */
+}
+
+.container-row-1 {
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.container-row-2 {
+  flex-grow: 2;
+  justify-content: center;
+}
+
+.container-row-3 {
+  flex-grow: 0;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+#image-author {
+  background-color: rgba(0, 0, 0, 0.692);
+  font-size: 0.8em;
   padding: 0.5rem;
   margin: 0;
   font-weight: 900;
