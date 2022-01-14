@@ -2,6 +2,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  font-family: "Indie Flower", cursive;
 }
 
 body {
@@ -36,20 +37,21 @@ div {
 }
 
 .container-row-1 {
-  flex-grow: 1;
   justify-content: space-between;
   align-items: flex-start;
 }
 
 .container-row-2 {
-  flex-grow: 2;
   justify-content: center;
 }
 
 .container-row-3 {
-  flex-grow: 0;
   justify-content: space-between;
   align-items: flex-end;
+}
+
+#time {
+  font-size: 4em;
 }
 
 #image-author {
