@@ -8,5 +8,5 @@ fetch(unsplashApiUrl)
   .then((data) => {
     //   ADDING RANDOM BACKGROUND IMAGE FROM UNSPLASH API
     bodyEl.style.backgroundImage = `url("${data.urls.full}")`;
-    imageAuthorEl.innerText = `${data.user.name}`;
+    imageAuthorEl.innerText = `Author: ${data.user.name}`;
   });
