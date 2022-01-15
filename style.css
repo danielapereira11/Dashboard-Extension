@@ -33,7 +33,7 @@ div {
   border: 1px solid red; /* For layout purposes only - delete later */
 }
 
-.container {
+.container-row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -42,7 +42,6 @@ div {
 }
 
 .container-row-1 {
-  justify-content: space-between;
   align-items: flex-start;
 }
 
@@ -51,12 +50,12 @@ div {
 }
 
 .container-row-3 {
-  justify-content: space-between;
   align-items: flex-end;
 }
 
 #crypto-container {
   background-color: rgba(0, 0, 0, 0.315);
+  padding: 0.7rem;
 }
 
 #crypto-chosen-container {
