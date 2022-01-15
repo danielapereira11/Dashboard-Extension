@@ -58,12 +58,21 @@ div {
   padding: 0.7rem;
 }
 
-#crypto-chosen-container {
+#crypto-chosen-header {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   gap: 1.5rem;
+}
+
+#crypto-chosen-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#crypto-info {
+  font-size: 1.2em;
 }
 
 #crypto-label {

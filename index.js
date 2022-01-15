@@ -30,10 +30,17 @@ function getCrypto(event) {
       const chosenCryptoDiv = document.getElementById(
         "crypto-chosen-container"
       );
-      // ADDING COIN IMAGE AND NAME TO THE DOM
+      // ADDING TO DOM COIN IMAGE, NAME AND PRICE
       chosenCryptoDiv.innerHTML = `
-      <img src="${data.image.small}" alt="${data.name} Image" id="crypto-img">
-      <h2 id="crypto-name">${data.name}</h2>
+      <div id="crypto-chosen-header">
+        <img src="${data.image.small}" alt="${data.name} Image" id="crypto-img">
+        <h2 id="crypto-name">${data.name}</h2>
+      </div>
+      <div id="crypto-info">
+        <p>💸 Current Price: ${data.market_data.current_price.eur} €</p>
+        <p>📈 24H high price: ${data.market_data.high_24h.eur} €</p>
+        <p>📉 24H low price: ${data.market_data.low_24h.eur} €</p>
+      </div>
       `;
       // HIDING THE INITIAL "CRYPTO" TITLE
       document.getElementById("crypto-label").classList.add("hidden");
