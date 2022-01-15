@@ -16,7 +16,18 @@
   <body>
     <div class="dashboard-container">
       <div class="container container-row-1">
-        <div id="crypto-container">I WILL BE CRYPTO</div>
+        <div id="crypto-container">
+          <div id="crypto-chosen-container"></div>
+          <form id="crypto-form" autocomplete="off">
+            <label for="crypto-input" id="crypto-label"><h2>CRYPTO</h2></label>
+            <input
+              type="text"
+              id="crypto-input"
+              placeholder="Write coin here"
+            />
+            <input type="submit" id="crypto-btn" value="GO" />
+          </form>
+        </div>
         <div id="weather-container">I WILL BE WEATHER</div>
       </div>
       <div class="container container-row-2">
