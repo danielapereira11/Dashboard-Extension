@@ -5,9 +5,23 @@ const unsplashApiUrl =
 const cryptoApiUrl = "https://api.coingecko.com/api/v3/coins/";
 
 // DISPLAY TIME
-document.getElementById(
-  "time"
-).innerHTML = `${new Date().getHours()}:${new Date().getMinutes()}`;
+function displayTime() {
+  timeEl = document.getElementById("time");
+  let hours = new Date().getHours();
+  let mins = new Date().getMinutes();
+  let secs = new Date().getSeconds();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  if (mins < 10) {
+    mins = `0${mins}`;
+  }
+  if (secs < 10) {
+    secs = `0${secs}`;
+  }
+  timeEl.innerHTML = `${hours}:${mins}:${secs}`;
+}
+setInterval(displayTime, 1000);
 
 // USING UNSPLASH API FOR BACKGROUND IMAGE
 fetch(unsplashApiUrl)
