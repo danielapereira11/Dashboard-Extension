@@ -16,6 +16,7 @@ body {
   -o-background-size: cover;
   background-size: cover;
   color: white;
+  text-shadow: 2px 1px 3px rgba(0, 0, 0, 0.514);
 }
 
 .dashboard-container {
@@ -52,6 +53,50 @@ div {
 .container-row-3 {
   justify-content: space-between;
   align-items: flex-end;
+}
+
+#crypto-container {
+  background-color: rgba(0, 0, 0, 0.315);
+}
+
+#crypto-chosen-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.5rem;
+}
+
+#crypto-label {
+  text-align: center;
+}
+
+#crypto-input {
+  font-family: "Indie Flower", cursive;
+  border: none;
+  border-radius: 2px;
+  margin-right: 0;
+  background-color: rgba(69, 173, 138, 0.767);
+}
+
+#crypto-input::placeholder {
+  color: black;
+  opacity: 0.6;
+}
+
+#crypto-btn {
+  font-family: "Indie Flower", cursive;
+  color: black;
+  font-weight: 700;
+  border: none;
+  border-radius: 2px;
+  background-color: rgb(43, 121, 95);
+  margin-left: 0;
+}
+
+#crypto-img {
+  height: 70%;
+  margin-left: 0.5rem;
 }
 
 #time {
