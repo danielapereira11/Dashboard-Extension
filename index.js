@@ -18,8 +18,30 @@ fetch(unsplashApiUrl)
     console.log(err);
   });
 
-// FETCH DATA FROM COIN GECKO API - CRYPTOCURRENCY
-fetch(`${cryptoApiUrl}dogecoin`)
-  .then((resp) => resp.json())
-  .then((data) => console.log(data))
-  .catch((err) => console.log(err));
+// FETCH DATA FROM COIN GECKO API -CRYPTOCURRENCY- AND DISPLAY IT IN DOM
+function getCrypto(event) {
+  event.preventDefault();
+
+  let cryptoInputValue = document.getElementById("crypto-input").value;
+
+  fetch(`${cryptoApiUrl}${cryptoInputValue}`)
+    .then((resp) => resp.json())
+    .then((data) => {
+      const chosenCryptoDiv = document.getElementById(
+        "crypto-chosen-container"
+      );
+      // ADDING COIN IMAGE AND NAME TO THE DOM
+      chosenCryptoDiv.innerHTML = `
+      <img src="${data.image.small}" alt="${data.name} Image" id="crypto-img">
+      <h2 id="crypto-name">${data.name}</h2>
+      `;
+      // HIDING THE INITIAL "CRYPTO" TITLE
+      document.getElementById("crypto-label").classList.add("hidden");
+    })
+    .catch((err) => console.log(err));
+
+  // RESETTING FORM INPUT VALUE
+  document.getElementById("crypto-form").reset();
+}
+
+document.getElementById("crypto-form").addEventListener("submit", getCrypto);
