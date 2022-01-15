@@ -4,10 +4,16 @@ const unsplashApiUrl =
   "https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature";
 const cryptoApiUrl = "https://api.coingecko.com/api/v3/coins/";
 
+// DISPLAY TIME
+document.getElementById(
+  "time"
+).innerHTML = `${new Date().getHours()}:${new Date().getMinutes()}`;
+
+// USING UNSPLASH API FOR BACKGROUND IMAGE
 fetch(unsplashApiUrl)
   .then((resp) => resp.json())
   .then((data) => {
-    //   ADDING RANDOM BACKGROUND IMAGE FROM UNSPLASH API
+    //   ADDING RANDOM IMAGE
     bodyEl.style.backgroundImage = `url("${data.urls.full}")`;
     imageAuthorEl.innerText = `Author: ${data.user.name}`;
   })
