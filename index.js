@@ -52,6 +52,7 @@ fetch(unsplashApiUrl)
 function getCrypto(event) {
   event.preventDefault();
 
+  // GETTING VALUE FROM INPUT FIELD
   let cryptoInputValue = document.getElementById("crypto-input").value;
 
   fetch(`${cryptoApiUrl}${cryptoInputValue}`)
@@ -87,32 +88,60 @@ document.getElementById("crypto-form").addEventListener("submit", getCrypto);
 
 // GETTING WEATHER INFORMATION //
 
-// DISPLAYING CURRENT WEATHER THROUGH COORDINATES
-function displayCurrentLocationWeather() {
-  fetch(
-    `${weatherApiUrl}?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&units=metric`
-  )
-    .then((res) => res.json())
-    .then((data) => {
-      weatherLocation.innerHTML = data.name;
-      weatherDataEl.innerHTML = `
+// DISPLAYING CURRENT WEATHER
+function displayWeather(data) {
+  // ADDING THE LOCATION NAME TO DOM
+  weatherLocation.innerHTML = data.name;
+  // ADDING TO DOM THE WEATHER ICON, DESCRIPTION AND TEMP
+  weatherDataEl.innerHTML = `
       <img src="http://openweathermap.org/img/wn/${data.weather[0].icon}.png" alt="${data.weather[0].description}"/>
       <p>${data.weather[0].description}</p>
       <p>${data.main.temp} ºC</p>
       `;
-      console.log(data);
-    });
+
+  // RESETTING FORM INPUT VALUE
+  searchLocationWeatherForm.reset();
+}
+
+// GETTING CURRENT WEATHER THROUGH COORDINATES
+function getCurrentLocationWeather(pos) {
+  latitude = pos.coords.latitude;
+  longitude = pos.coords.longitude;
+  fetch(
+    `${weatherApiUrl}?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&units=metric`
+  )
+    .then((res) => res.json())
+    .then((data) => displayWeather(data))
+    .catch((err) => console.log(err));
 }
 
 // GETTING CURRENT LOCATION COORDINATES
 function getCurrentLocation() {
-  navigator.geolocation.getCurrentPosition((pos) => {
-    latitude = pos.coords.latitude;
-    longitude = pos.coords.longitude;
-    displayCurrentLocationWeather();
-  });
+  navigator.geolocation.getCurrentPosition(getCurrentLocationWeather);
 }
 
+// GETTING SEARCHED LOCATION WEATHER
+function getSearchedLocationWeather(event) {
+  event.preventDefault();
+
+  // GETTING VALUE FROM INPUT FIELD
+  let weatherInputValue = document.getElementById(
+    "weather-location-input"
+  ).value;
+
+  fetch(
+    `${weatherApiUrl}?q=${weatherInputValue}&appid=${weatherApiKey}&units=metric`
+  )
+    .then((resp) => resp.json())
+    .then((data) => displayWeather(data))
+    .catch((err) => console.log(err));
+}
+
+let searchLocationWeatherForm = document.getElementById("weather-form");
+searchLocationWeatherForm.addEventListener(
+  "submit",
+  getSearchedLocationWeather
+);
 let locationPinBtn = document.getElementById("location-pin-btn");
 locationPinBtn.addEventListener("click", getCurrentLocation);
 getCurrentLocation();
