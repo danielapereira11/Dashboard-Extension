@@ -19,6 +19,19 @@ body {
   text-shadow: 2px 1px 3px rgba(0, 0, 0, 0.514);
 }
 
+h2 {
+  margin: 0.5em auto;
+}
+
+input {
+  font-family: "Indie Flower", cursive;
+  color: black;
+  border: none;
+  border-radius: 2px;
+  margin: 0.5em 0;
+  padding: 0.5em 0.8em;
+}
+
 .dashboard-container {
   min-height: 100vh;
   height: 100vh;
@@ -74,26 +87,18 @@ body {
 }
 
 #crypto-input {
-  font-family: "Indie Flower", cursive;
-  border: none;
-  border-radius: 2px;
-  margin-right: 0;
-  background-color: rgba(69, 173, 138, 0.767);
+  background-color: rgba(69, 173, 138, 0.8);
 }
 
-#crypto-input::placeholder {
+#crypto-input::placeholder,
+#weather-location-input::placeholder {
   color: black;
   opacity: 0.6;
 }
 
-#crypto-btn {
-  font-family: "Indie Flower", cursive;
-  color: black;
+input#crypto-btn {
   font-weight: 700;
-  border: none;
-  border-radius: 2px;
   background-color: rgb(43, 121, 95);
-  margin-left: 0;
 }
 
 #crypto-img {
@@ -115,6 +120,12 @@ body {
   justify-content: center;
 }
 
+#weather-data {
+  display: flex;
+  gap: 1rem;
+  font-size: 1em;
+}
+
 .location-pin-btn {
   color: rgb(207, 50, 76);
   font-size: 1.5em;
@@ -123,6 +134,14 @@ body {
   cursor: pointer;
   text-shadow: 2px 1px 2px rgba(207, 50, 76, 0.678);
   margin: 0 0.5rem;
+}
+
+#weather-location-input {
+  background-color: rgba(209, 70, 93, 0.8);
+}
+
+input#weather-location-btn {
+  background-color: rgb(204, 58, 83);
 }
 
 #time {
