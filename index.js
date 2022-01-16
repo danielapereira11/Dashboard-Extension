@@ -3,8 +3,14 @@ const imageAuthorEl = document.getElementById("image-author");
 const unsplashApiUrl =
   "https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature";
 const cryptoApiUrl = "https://api.coingecko.com/api/v3/coins/";
+const weatherApiUrl = "https://api.openweathermap.org/data/2.5/weather";
+const weatherApiKey = "7df6c65e200126c6e7cd1b9752957b4c";
+let latitude;
+let longitude;
+const weatherLocation = document.getElementById("weather-header");
+const weatherDataEl = document.getElementById("weather-data");
 
-// DISPLAY TIME
+// DISPLAY TIME //
 function displayTime() {
   timeEl = document.getElementById("time");
   let hours = new Date().getHours();
@@ -23,7 +29,9 @@ function displayTime() {
 }
 setInterval(displayTime, 1000);
 
-// USING UNSPLASH API FOR BACKGROUND IMAGE
+// ..END OF DISPLAY TIME //
+
+// USING UNSPLASH API FOR BACKGROUND IMAGE //
 fetch(unsplashApiUrl)
   .then((resp) => resp.json())
   .then((data) => {
@@ -38,7 +46,9 @@ fetch(unsplashApiUrl)
     console.log(err);
   });
 
-// FETCH DATA FROM COIN GECKO API -CRYPTOCURRENCY- AND DISPLAY IT IN DOM
+// ..END OF USING UNSPLASH API FOR BACKGROUND IMAGE //
+
+// FETCH DATA FROM COIN GECKO API -CRYPTOCURRENCY- AND DISPLAY IT IN DOM //
 function getCrypto(event) {
   event.preventDefault();
 
@@ -72,3 +82,39 @@ function getCrypto(event) {
 }
 
 document.getElementById("crypto-form").addEventListener("submit", getCrypto);
+
+// ..END OF FETCH DATA FROM COIN GECKO API -CRYPTOCURRENCY- AND DISPLAY IT IN DOM //
+
+// GETTING WEATHER INFORMATION //
+
+// DISPLAYING CURRENT WEATHER THROUGH COORDINATES
+function displayCurrentLocationWeather() {
+  fetch(
+    `${weatherApiUrl}?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&units=metric`
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      weatherLocation.innerHTML = data.name;
+      weatherDataEl.innerHTML = `
+      <img src="http://openweathermap.org/img/wn/${data.weather[0].icon}.png" alt="${data.weather[0].description}"/>
+      <p>${data.weather[0].description}</p>
+      <p>${data.main.temp} ºC</p>
+      `;
+      console.log(data);
+    });
+}
+
+// GETTING CURRENT LOCATION COORDINATES
+function getCurrentLocation() {
+  navigator.geolocation.getCurrentPosition((pos) => {
+    latitude = pos.coords.latitude;
+    longitude = pos.coords.longitude;
+    displayCurrentLocationWeather();
+  });
+}
+
+let locationPinBtn = document.getElementById("location-pin-btn");
+locationPinBtn.addEventListener("click", getCurrentLocation);
+getCurrentLocation();
+
+// ...END OF GETTING WEATHER INFORMATION //
