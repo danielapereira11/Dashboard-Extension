@@ -12,6 +12,10 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/3034dccdbc.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <div class="dashboard-container">
@@ -28,7 +32,25 @@
           </form>
           <div id="crypto-chosen-container"></div>
         </div>
-        <div id="weather-container">I WILL BE WEATHER</div>
+        <div id="weather-container">
+          <div id="weather-header-container"> 
+            <h2 class="weather-header">CURRENT LOCATION</h2>
+            <button class="location-pin-btn" id="location-pin-btn">
+              <i class="fas fa-map-marker-alt"></i>
+            </button>
+          </div>
+          <div id="weather-data">HERE WILL GO THE WEATHER DATA</div>
+          <form id="weather-form" autocomplete="off">
+            <label for="weather-location-input" id="weather-location-label"
+              ><input
+                type="text"
+                id="weather-location-input"
+                placeholder="Search another location"
+            /></label>
+            <input type="submit" id="weather-location-btn" value="➡"></input>
+          </form>
+        </div>
+        <!-- END OF WEATHER CONTAINER -->
       </div>
       <div class="container-row container-row-2">
         <p id="time"></p>
