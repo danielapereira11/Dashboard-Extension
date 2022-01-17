@@ -5,10 +5,11 @@ const unsplashApiUrl =
 const cryptoApiUrl = "https://api.coingecko.com/api/v3/coins/";
 const weatherApiUrl = "https://api.openweathermap.org/data/2.5/weather";
 const weatherApiKey = "7df6c65e200126c6e7cd1b9752957b4c";
-let latitude;
-let longitude;
 const weatherLocation = document.getElementById("weather-header");
 const weatherDataEl = document.getElementById("weather-data");
+let weatherInputValue;
+let latitude;
+let longitude;
 
 // DISPLAY TIME //
 function displayTime() {
@@ -92,6 +93,7 @@ document.getElementById("crypto-form").addEventListener("submit", getCrypto);
 function displayWeather(data) {
   // ADDING THE LOCATION NAME TO DOM
   weatherLocation.innerHTML = data.name;
+
   // ADDING TO DOM THE WEATHER ICON, DESCRIPTION AND TEMP
   weatherDataEl.innerHTML = `
       <img src="http://openweathermap.org/img/wn/${data.weather[0].icon}.png" alt="${data.weather[0].description}"/>
@@ -112,7 +114,10 @@ function getCurrentLocationWeather(pos) {
   )
     .then((res) => res.json())
     .then((data) => displayWeather(data))
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+      weatherLocation.innerHTML = "Sorry, can't find you at the moment 😕";
+    });
 }
 
 // GETTING CURRENT LOCATION COORDINATES
@@ -125,16 +130,17 @@ function getSearchedLocationWeather(event) {
   event.preventDefault();
 
   // GETTING VALUE FROM INPUT FIELD
-  let weatherInputValue = document.getElementById(
-    "weather-location-input"
-  ).value;
+  weatherInputValue = document.getElementById("weather-location-input").value;
 
   fetch(
     `${weatherApiUrl}?q=${weatherInputValue}&appid=${weatherApiKey}&units=metric`
   )
     .then((resp) => resp.json())
     .then((data) => displayWeather(data))
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+      weatherLocation.innerHTML = "Sorry, can't find that location 😕";
+    });
 }
 
 let searchLocationWeatherForm = document.getElementById("weather-form");
