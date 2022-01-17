@@ -46,7 +46,6 @@ input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 2px solid black; /* For layout purposes only - delete later */
 }
 
 .container-row-1 {
@@ -158,4 +157,28 @@ input#weather-location-btn {
 
 .hidden {
   display: none;
+}
+
+#daily-quote-container {
+  text-align: center;
+  width: 60%;
+}
+
+#daily-quote-container > span {
+  z-index: 1;
+  font-size: 0.5em;
+  font-weight: bold;
+  margin: 0.2em 0;
+}
+
+a.quotes-reference-link:link,
+a.quotes-reference-link:visited,
+a.quotes-reference-link:active,
+a.quotes-reference-link:hover {
+  color: #ccc;
+}
+
+#daily-quote {
+  font-size: 0.7em;
+  margin-bottom: 0.2em 0;
 }

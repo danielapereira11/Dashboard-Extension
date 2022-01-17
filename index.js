@@ -171,3 +171,26 @@ locationPinBtn.addEventListener("click", getCurrentLocation);
 getCurrentLocation();
 
 // ...END OF GETTING WEATHER INFORMATION //
+
+// DAILY QUOTE API //
+
+function getDailyQuote() {
+  const dailyQuoteEl = document.getElementById("daily-quote");
+  const dailyQuoteContainer = document.getElementById("daily-quote-container");
+  fetch("http://quotes.rest/qod")
+    .then((res) => {
+      if (!res.ok) {
+        throw Error("Quote data not available");
+      }
+      return res.json();
+    })
+    .then((data) => {
+      dailyQuoteEl.innerHTML = `${data.contents.quotes[0].quote}`;
+    })
+    .catch((err) => {
+      dailyQuoteContainer.innerHTML = "";
+      console.log(err);
+    });
+}
+
+getDailyQuote();
