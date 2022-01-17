@@ -55,13 +55,16 @@ function getCrypto(event) {
 
   // GETTING VALUE FROM INPUT FIELD
   let cryptoInputValue = document.getElementById("crypto-input").value;
+  const chosenCryptoDiv = document.getElementById("crypto-chosen-container");
 
   fetch(`${cryptoApiUrl}${cryptoInputValue}`)
-    .then((resp) => resp.json())
+    .then((resp) => {
+      if (!resp.ok) {
+        throw Error("Crypto data not available");
+      }
+      return resp.json();
+    })
     .then((data) => {
-      const chosenCryptoDiv = document.getElementById(
-        "crypto-chosen-container"
-      );
       // ADDING TO DOM COIN IMAGE, NAME AND PRICE
       chosenCryptoDiv.innerHTML = `
       <div id="crypto-chosen-header">
@@ -77,7 +80,10 @@ function getCrypto(event) {
       // HIDING THE INITIAL "CRYPTO" TITLE
       document.getElementById("crypto-label").classList.add("hidden");
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      chosenCryptoDiv.innerHTML = `<h2 id="crypto-name">Sorry, Crypto data not available</h2>`;
+      console.log(err);
+    });
 
   // RESETTING FORM INPUT VALUE
   document.getElementById("crypto-form").reset();
@@ -112,11 +118,16 @@ function getCurrentLocationWeather(pos) {
   fetch(
     `${weatherApiUrl}?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&units=metric`
   )
-    .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) {
+        throw Error("Weather data not available");
+      }
+      return res.json();
+    })
     .then((data) => displayWeather(data))
     .catch((err) => {
       console.log(err);
-      weatherLocation.innerHTML = "Sorry, can't find you at the moment 😕";
+      weatherLocation.innerHTML = "Sorry, can't find that location 😕";
     });
 }
 
@@ -135,7 +146,12 @@ function getSearchedLocationWeather(event) {
   fetch(
     `${weatherApiUrl}?q=${weatherInputValue}&appid=${weatherApiKey}&units=metric`
   )
-    .then((resp) => resp.json())
+    .then((res) => {
+      if (!res.ok) {
+        throw Error("Weather data not available");
+      }
+      return res.json();
+    })
     .then((data) => displayWeather(data))
     .catch((err) => {
       console.log(err);
