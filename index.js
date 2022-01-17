@@ -102,9 +102,11 @@ function displayWeather(data) {
 
   // ADDING TO DOM THE WEATHER ICON, DESCRIPTION AND TEMP
   weatherDataEl.innerHTML = `
-      <img src="http://openweathermap.org/img/wn/${data.weather[0].icon}.png" alt="${data.weather[0].description}"/>
+      <img src="http://openweathermap.org/img/wn/${
+        data.weather[0].icon
+      }.png" alt="${data.weather[0].description}"/>
       <p>${data.weather[0].description}</p>
-      <p>${data.main.temp} ºC</p>
+      <p>${Math.round(data.main.temp)} ºC</p>
       `;
 
   // RESETTING FORM INPUT VALUE
