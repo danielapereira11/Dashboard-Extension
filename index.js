@@ -104,7 +104,7 @@ function displayWeather(data) {
   weatherDataEl.innerHTML = `
       <img src="http://openweathermap.org/img/wn/${
         data.weather[0].icon
-      }.png" alt="${data.weather[0].description}"/>
+      }.png" alt="${data.weather[0].description}" class="weather-icon"/>
       <p>${data.weather[0].description}</p>
       <p>${Math.round(data.main.temp)} ºC</p>
       `;
