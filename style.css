@@ -182,3 +182,8 @@ a.quotes-reference-link:hover {
   font-size: 0.7em;
   margin-bottom: 0.2em 0;
 }
+
+#to-do-container {
+  color: transparent;
+  text-shadow: none;
+}
