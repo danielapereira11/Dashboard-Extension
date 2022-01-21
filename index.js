@@ -2,6 +2,7 @@ const bodyEl = document.querySelector("body");
 const imageAuthorEl = document.getElementById("image-author");
 const unsplashApiUrl =
   "https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature";
+const quoteApi = "https://goquotes-api.herokuapp.com/api/v1/random?count=1";
 const cryptoApiUrl = "https://api.coingecko.com/api/v3/coins/";
 const weatherApiUrl = "https://api.openweathermap.org/data/2.5/weather";
 const weatherApiKey = "7df6c65e200126c6e7cd1b9752957b4c";
@@ -177,7 +178,7 @@ getCurrentLocation();
 function getDailyQuote() {
   const dailyQuoteEl = document.getElementById("daily-quote");
   const dailyQuoteContainer = document.getElementById("daily-quote-container");
-  fetch("http://quotes.rest/qod")
+  fetch(quoteApi)
     .then((res) => {
       if (!res.ok) {
         throw Error("Quote data not available");
@@ -185,7 +186,8 @@ function getDailyQuote() {
       return res.json();
     })
     .then((data) => {
-      dailyQuoteEl.innerHTML = `${data.contents.quotes[0].quote}`;
+      console.log(data);
+      dailyQuoteEl.innerHTML = `"${data.quotes[0].text}"`;
     })
     .catch((err) => {
       dailyQuoteContainer.innerHTML = "";

@@ -179,20 +179,7 @@ input#weather-location-btn {
 
 #daily-quote {
   font-size: 1.2em;
-  margin: 0;
-}
-
-.daily-quote-span {
-  z-index: 1;
-  font-size: 0.6em;
-  font-weight: bold;
-}
-
-a.quotes-reference-link:link,
-a.quotes-reference-link:visited,
-a.quotes-reference-link:active,
-a.quotes-reference-link:hover {
-  color: #ccc;
+  margin-bottom: 1rem;
 }
 
 #to-do-container {
